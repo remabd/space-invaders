@@ -10,9 +10,9 @@ import com.jogamp.opengl.awt.GLCanvas;
 import com.jogamp.opengl.glu.GLU;
 import com.jogamp.opengl.util.Animator;
 
-public class App extends GLCanvas implements GLEventListener {
-  public static void main(String[] args) {
-    GLCanvas canvas = new App();
+public class GameWindow extends GLCanvas implements GLEventListener {
+  public static void main() {
+    GLCanvas canvas = new GameWindow();
     canvas.setPreferredSize(new Dimension(600, 800));
     final JFrame frame = new JFrame();
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

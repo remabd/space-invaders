@@ -1,4 +1,4 @@
-package com.space.game;
+package com.space.model;
 
 public class Position {
   private float x, y;
