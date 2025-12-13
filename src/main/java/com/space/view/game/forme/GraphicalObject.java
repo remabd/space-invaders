@@ -29,6 +29,12 @@ public abstract class GraphicalObject {
     this.a = a;
   }
 
+  public void setAngle(float aX, float aY, float aZ) {
+    this.aX = aX;
+    this.aY = aY;
+    this.aZ = aZ;
+  }
+
   public void display(GL2 gl) {
     gl.glPushMatrix();
     gl.glTranslatef(this.x, this.y, this.z);

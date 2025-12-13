@@ -11,12 +11,12 @@ public class Cube extends GraphicalObject {
       float scale) {
     super(x, y, z, aX, aY, aZ, r, g, b, scale);
     faces = new ArrayList<Carre>();
-    faces.add(new Carre("assets/arrow.png", 0f, 0f, 1f, 0f, 0f, 0f, 1f, 0f, 0f, 1f));
-    faces.add(new Carre("assets/arrow.png", 0f, 0f, -1f, 0f, 0f, 0f, 1f, 0f, 0f, 1f));
-    faces.add(new Carre("assets/arrow.png", 1f, 0f, 0f, 0f, 90f, 0f, 1f, 0f, 0f, 1f));
-    faces.add(new Carre("assets/arrow.png", -1f, 0f, 0f, 0f, 90f, 0f, 1f, 0f, 0f, 1f));
-    faces.add(new Carre("assets/arrow.png", 0f, 1f, 1f, 90f, 0f, 0f, 1f, 0f, 0f, 1f));
-    faces.add(new Carre("assets/arrow.png", 0f, -1f, 1f, 90f, 0f, 0f, 1f, 0f, 0f, 1f));
+    faces.add(new Carre("assets/arrow.png", 0f, 0f, 1f, 0f, 0f, 0f, r, g, b, 1f));
+    faces.add(new Carre("assets/arrow.png", 0f, 0f, -1f, 0f, 0f, 0f, r, g, b, 1f));
+    faces.add(new Carre("assets/arrow.png", 1f, 0f, 0f, 0f, 90f, 0f, r, g, b, 1f));
+    faces.add(new Carre("assets/arrow.png", -1f, 0f, 0f, 0f, 90f, 0f, r, g, b, 1f));
+    faces.add(new Carre("assets/arrow.png", 0f, 1f, 0f, 90f, 0f, 0f, r, g, b, 1f));
+    faces.add(new Carre("assets/arrow.png", 0f, -1f, 0f, 90f, 0f, 0f, r, g, b, 1f));
   }
 
   public void displayNormalized(GL2 gl) {
