@@ -35,6 +35,16 @@ public abstract class GraphicalObject {
     this.aZ = aZ;
   }
 
+  public void move(float x, float y) {
+    this.x = x;
+    this.y = y;
+  }
+
+  public float[] getPosition() {
+    float[] result = { x, y };
+    return result;
+  }
+
   public void display(GL2 gl) {
     gl.glPushMatrix();
     gl.glTranslatef(this.x, this.y, this.z);
