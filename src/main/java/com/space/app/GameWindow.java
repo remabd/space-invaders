@@ -47,4 +47,5 @@ public class GameWindow extends GLCanvas implements GLEventListener {
     // TODO Auto-generated method stub
     throw new UnsupportedOperationException("Unimplemented method 'reshape'");
   }
+  // Comment
 }
