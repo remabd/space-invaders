@@ -15,8 +15,8 @@ import com.jogamp.opengl.glu.GLU;
 import com.jogamp.opengl.util.Animator;
 import com.space.view.game.forme.Cube;
 import com.space.view.game.forme.GraphicalObject;
-import com.space.view.game.renderer.MonsterRenderer;
-import com.space.view.game.renderer.PlayerRenderer;
+import com.space.view.game.render.MonsterRender;
+import com.space.view.game.render.PlayerRender;
 
 public class Main extends GLCanvas implements GLEventListener {
   private ArrayList<GraphicalObject> objects;
@@ -32,11 +32,11 @@ public class Main extends GLCanvas implements GLEventListener {
   public void init(GLAutoDrawable drawable) {
     Cube c1 = new Cube("assets/arrow.png", 0, 0, 0, 0, 0, 0, 1f, 0, 0, 2f);
     objects.add(c1);
-    PlayerRenderer player = new PlayerRenderer(0f, -27f, 0f, 0f, 0f, 0f, 0f, 1f, 0f, 1f);
+    PlayerRender player = new PlayerRender(0f, -27f, 0f, 0f, 0f, 0f, 0f, 1f, 0f, 1f);
     objects.add(player);
     for (int i = 0; i < 27; i++) {
       int[] position = { -12 + (3 * i) % 27, +27 - (3 * i) / 27 };
-      objects.add(new MonsterRenderer((float) position[0], (float) position[1], 0f, 0f, 0f, 0f, 1f, 0f, 0f, 1f));
+      objects.add(new MonsterRender((float) position[0], (float) position[1], 0f, 0f, 0f, 0f, 1f, 0f, 0f, 1f));
     }
 
     this.addKeyListener(new KeyListener() {

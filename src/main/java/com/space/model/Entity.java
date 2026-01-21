@@ -4,12 +4,14 @@ public abstract class Entity {
 
     protected Position position;
     protected Speed speed;
-    private int hp;
+    protected int hp;
+    protected Render render;
 
     public Entity(int hp, Position p, Speed s) {
         this.position = p;
         this.speed = s;
         this.hp = hp;
+        this.initRenderer();
     }
 
     public void loseHp() {
@@ -32,4 +34,6 @@ public abstract class Entity {
     abstract void move();
 
     abstract void shoot();
+
+    abstract void initRenderer();
 }
