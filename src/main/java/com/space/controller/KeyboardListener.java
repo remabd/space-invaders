@@ -5,6 +5,7 @@ import com.jogamp.newt.event.KeyListener;
 import com.space.model.Player;
 
 public class KeyboardListener implements KeyListener {
+
     private Player player;
 
     public KeyboardListener(Player player) {
@@ -18,5 +19,4 @@ public class KeyboardListener implements KeyListener {
 
     @Override
     public void keyReleased(KeyEvent e) {}
-    }
 }
