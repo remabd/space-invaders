@@ -22,10 +22,17 @@ public class Carre extends GraphicalObject {
   }
 
   public void displayNormalized(GL2 gl) {
+    texture.enable(gl);
+    texture.bind(gl);
+    gl.glTexEnvi(GL2.GL_TEXTURE_ENV, GL2.GL_TEXTURE_ENV_MODE, GL2.GL_MODULATE);
     gl.glBegin(GL2.GL_QUADS);
+    gl.glTexCoord2f(0f, 0f);
     gl.glVertex3f(-1f, -1f, 0f);
+    gl.glTexCoord2f(1f, 0f);
     gl.glVertex3f(1f, -1f, 0f);
+    gl.glTexCoord2f(1f, 1f);
     gl.glVertex3f(1f, 1f, 0f);
+    gl.glTexCoord2f(0f, 1f);
     gl.glVertex3f(-1f, 1f, 0f);
     gl.glEnd();
   }

@@ -1,25 +1,14 @@
 package com.space.model;
 
-public class Player {
-  private float speed;
-  private int hp;
-  private Position position;
+public class Player extends Entity {
 
-  public Player(int hp) {
-    this.hp = hp;
-  }
+    public Player() {
+        super(5, new Position(0f, -5f), new Speed(0f, 0f, 0f));
+    }
 
-  public boolean isAlive() {
-    return this.hp > 0;
-  }
+    public void move() {}
 
-  public void takeHit() {
-    this.hp--;
-  }
+    public void resolveDeath() {}
 
-  public void moveLeft() {
-  }
-
-  public void moveRight() {
-  }
+    public void shoot() {}
 }

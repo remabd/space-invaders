@@ -30,16 +30,14 @@ public class Main extends GLCanvas implements GLEventListener {
 
   @Override
   public void init(GLAutoDrawable drawable) {
-    Cube c1 = new Cube("assets/arrow.png", 0, 0, 0, 0, 0, 0, 1f, 0, 0, 1f);
+    Cube c1 = new Cube("assets/arrow.png", 0, 0, 0, 0, 0, 0, 1f, 0, 0, 2f);
     objects.add(c1);
-    PlayerRenderer player = new PlayerRenderer(0f, -27f, 0f, 0f, 0f, 0f, 0f, 1f,
-        0f, 1f);
-    for (int i = 0; i < 27; i++) {
-      int[] postion = { -12 + (3 * i) % 27, +27 - (3 * i) / 27 };
-      objects.add(new MonsterRenderer((float) postion[0], (float) postion[1], 0f, 0f, 0f, 0f, 1f,
-          0f, 0f, 1f));
-    }
+    PlayerRenderer player = new PlayerRenderer(0f, -27f, 0f, 0f, 0f, 0f, 0f, 1f, 0f, 1f);
     objects.add(player);
+    for (int i = 0; i < 27; i++) {
+      int[] position = { -12 + (3 * i) % 27, +27 - (3 * i) / 27 };
+      objects.add(new MonsterRenderer((float) position[0], (float) position[1], 0f, 0f, 0f, 0f, 1f, 0f, 0f, 1f));
+    }
 
     this.addKeyListener(new KeyListener() {
 
@@ -113,5 +111,4 @@ public class Main extends GLCanvas implements GLEventListener {
     final Animator animator = new Animator(canvas);
     animator.start();
   }
-
 }
