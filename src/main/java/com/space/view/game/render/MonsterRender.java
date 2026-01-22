@@ -1,7 +1,6 @@
 package com.space.view.game.render;
 
 import com.jogamp.opengl.GL2;
-import com.space.model.Render;
 import com.space.view.game.forme.Cube;
 import com.space.view.game.forme.GraphicalObject;
 import java.util.ArrayList;

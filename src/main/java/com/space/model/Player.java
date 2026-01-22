@@ -1,11 +1,15 @@
 package com.space.model;
 
+import com.space.controller.BulletManager;
+import com.space.view.game.MainGame;
 import com.space.view.game.render.PlayerRender;
 
 public class Player extends Entity {
 
-    public Player() {
-        super(5, new Position(0f, -5f), new Speed(0f, 0f, 0f));
+    public static float PLAYERSPEED = 1f;
+
+    public Player(BulletManager bm) {
+        super(5, new Position(0f, -5f), new Speed(0f, 0f, 0f), bm);
     }
 
     public void move() {}
@@ -17,7 +21,7 @@ public class Player extends Entity {
     public void initRenderer() {
         this.render = new PlayerRender(
             0f,
-            -5f,
+            -27f,
             Position.DEPTH,
             0f,
             0f,

@@ -10,6 +10,18 @@ public class Speed {
         this.vZ = vZ;
     }
 
+    public float getVX() {
+        return vX;
+    }
+
+    public float getVY() {
+        return vY;
+    }
+
+    public float getVZ() {
+        return vZ;
+    }
+
     public void setSpeed(Speed s) {
         this.vX = s.vX;
         this.vY = s.vY;

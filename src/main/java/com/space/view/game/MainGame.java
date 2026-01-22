@@ -6,65 +6,74 @@ import com.jogamp.opengl.GLEventListener;
 import com.jogamp.opengl.awt.GLCanvas;
 import com.jogamp.opengl.glu.GLU;
 import com.jogamp.opengl.util.Animator;
+import com.space.controller.BulletManager;
 import com.space.controller.KeyboardListener;
+import com.space.model.Bullet;
+import com.space.model.Monster;
 import com.space.model.Player;
+import com.space.model.Position;
 import com.space.view.game.forme.Cube;
 import com.space.view.game.forme.GraphicalObject;
 import com.space.view.game.render.MonsterRender;
 import com.space.view.game.render.PlayerRender;
 import java.awt.Dimension;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.util.ArrayList;
 import javax.swing.JFrame;
 
-public class Main extends GLCanvas implements GLEventListener {
+public class MainGame
+    extends GLCanvas
+    implements GLEventListener, BulletManager
+{
 
-    private ArrayList<GraphicalObject> objects;
+    private Player player;
+    private ArrayList<Monster> monsters;
+    private ArrayList<Bullet> bullets;
     private float angle;
 
-    public Main() {
+    public MainGame() {
         this.addGLEventListener(this);
-        this.objects = new ArrayList<GraphicalObject>();
+        this.player = new Player(this);
+        this.monsters = new ArrayList<Monster>();
+        this.bullets = new ArrayList<Bullet>();
         this.angle = 0f;
     }
 
     @Override
     public void init(GLAutoDrawable drawable) {
-        Cube c1 = new Cube("assets/arrow.png", 0, 0, 0, 0, 0, 0, 1f, 0, 0, 2f);
-        objects.add(c1);
-        PlayerRender player = new PlayerRender(
-            0f,
-            -27f,
-            0f,
-            0f,
-            0f,
-            0f,
-            0f,
-            1f,
-            0f,
-            1f
-        );
-        objects.add(player);
-        for (int i = 0; i < 27; i++) {
-            int[] position = { -12 + ((3 * i) % 27), +27 - (3 * i) / 27 };
-            objects.add(
-                new MonsterRender(
-                    (float) position[0],
-                    (float) position[1],
-                    0f,
-                    0f,
-                    0f,
-                    0f,
-                    1f,
-                    0f,
-                    0f,
-                    1f
-                )
-            );
-        }
+        // Cube c1 = new Cube("assets/arrow.png", 0, 0, 0, 0, 0, 0, 1f, 0, 0, 2f);
+        // objects.add(c1);
+        // PlayerRender player = new PlayerRender(
+        //     0f,
+        //     -27f,
+        //     0f,
+        //     0f,
+        //     0f,
+        //     0f,
+        //     0f,
+        //     1f,
+        //     0f,
+        //     1f
+        // );
+        // objects.add(player);
+        // for (int i = 0; i < 27; i++) {
+        //     int[] position = { -12 + ((3 * i) % 27), +27 - (3 * i) / 27 };
+        //     objects.add(
+        //         new MonsterRender(
+        //             (float) position[0],
+        //             (float) position[1],
+        //             0f,
+        //             0f,
+        //             0f,
+        //             0f,
+        //             1f,
+        //             0f,
+        //             0f,
+        //             1f
+        //         )
+        //     );
+        // }
 
-        this.addKeyListener(new KeyboardListener(new Player()));
+        this.addKeyListener(new KeyboardListener(this.player));
         GL2 gl = drawable.getGL().getGL2();
         gl.glEnable(GL2.GL_TEXTURE_2D);
         gl.glEnable(GL2.GL_BLEND);
@@ -80,11 +89,12 @@ public class Main extends GLCanvas implements GLEventListener {
         gl.glClear(GL2.GL_COLOR_BUFFER_BIT | GL2.GL_DEPTH_BUFFER_BIT);
         gl.glLoadIdentity();
         this.angle += 1f;
-        gl.glTranslatef(0f, 0f, -70f);
-        for (GraphicalObject object : this.objects) {
-            object.setAngle(this.angle, this.angle, 0f);
-            object.display(gl);
-        }
+        gl.glTranslatef(0f, 0f, -Position.DEPTH);
+        this.player.getRender().display(gl);
+        // for (GraphicalObject object : this.objects) {
+        //     object.setAngle(this.angle, this.angle, 0f);
+        //     object.display(gl);
+        // }
     }
 
     @Override
@@ -113,7 +123,7 @@ public class Main extends GLCanvas implements GLEventListener {
     }
 
     public static void main(String[] args) {
-        GLCanvas canvas = new Main();
+        GLCanvas canvas = new MainGame();
         canvas.setPreferredSize(new Dimension(600, 800));
         final JFrame frame = new JFrame();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -123,5 +133,10 @@ public class Main extends GLCanvas implements GLEventListener {
         frame.setVisible(true);
         final Animator animator = new Animator(canvas);
         animator.start();
+    }
+
+    @Override
+    public void addBullet(Bullet bullet) {
+        this.bullets.add(bullet);
     }
 }
