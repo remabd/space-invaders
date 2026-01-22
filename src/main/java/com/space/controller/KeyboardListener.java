@@ -10,21 +10,22 @@ import java.awt.event.KeyListener;
 import java.util.HashMap;
 import java.util.Map;
 
+//TODO Il faut passer le shoot en KeyTyped et non en Keypressed
 public class KeyboardListener implements KeyListener {
 
     private Player player;
+    private HashMap<Integer, Key> keyBinds;
 
     public KeyboardListener(Player player) {
         this.player = player;
+        this.keyBinds = new HashMap<>();
+        this.keyBinds.put(KeyEvent.VK_LEFT, new LeftKey(this.player));
+        this.keyBinds.put(KeyEvent.VK_RIGHT, new RightKey(this.player));
+        this.keyBinds.put(KeyEvent.VK_SPACE, new SpaceKey(this.player));
     }
 
     @Override
     public void keyPressed(KeyEvent e) {
-        Map<Integer, Key> keyBinds = new HashMap<>();
-        keyBinds.put(KeyEvent.VK_LEFT, new LeftKey(this.player));
-        keyBinds.put(KeyEvent.VK_RIGHT, new RightKey(this.player));
-        keyBinds.put(KeyEvent.VK_SPACE, new SpaceKey(this.player));
-
         Key keyPressed = keyBinds.get(e.getKeyCode());
         if (keyPressed != null) {
             keyPressed.doAction();
