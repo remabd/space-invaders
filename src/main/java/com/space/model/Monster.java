@@ -7,8 +7,8 @@ public class Monster extends Entity {
 
     public static float MONSTERSPEED = 1f;
 
-    public Monster(Position p, Speed s, BulletManager bm) {
-        super(1, p, s, bm);
+    public Monster(Position p, BulletManager bm) {
+        super(1, p, bm);
     }
 
     public void move() {}

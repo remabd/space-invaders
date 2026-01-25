@@ -6,14 +6,12 @@ import com.space.view.game.render.Render;
 public abstract class Entity {
 
     protected Position position;
-    protected Speed speed;
     protected int hp;
     protected Render render;
     protected BulletManager bulletController;
 
-    public Entity(int hp, Position p, Speed s, BulletManager bm) {
+    public Entity(int hp, Position p, BulletManager bm) {
         this.position = p;
-        this.speed = s;
         this.hp = hp;
         this.bulletController = bm;
     }
@@ -27,10 +25,6 @@ public abstract class Entity {
 
     public Position getPosition() {
         return this.position;
-    }
-
-    public Speed getSpeed() {
-        return this.speed;
     }
 
     public Render getRender() {

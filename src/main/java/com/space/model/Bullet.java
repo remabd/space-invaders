@@ -7,8 +7,8 @@ public class Bullet extends Entity {
 
     public static float BULLETSPEED = 2f;
 
-    public Bullet(Position p, Speed s, BulletManager bm) {
-        super(1, p, s, bm);
+    public Bullet(Position p, BulletManager bm) {
+        super(1, p, bm);
     }
 
     @Override

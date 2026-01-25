@@ -8,7 +8,7 @@ public class Player extends Entity {
     public static float PLAYERSPEED = 1f;
 
     public Player(BulletManager bm) {
-        super(5, new Position(0f, -27f), new Speed(0f, 0f, 0f), bm);
+        super(5, new Position(0f, -27f), bm);
     }
 
     public void move(float pX, float pY) {
