@@ -37,24 +37,9 @@ public class MainGame
     @Override
     public void init(GLAutoDrawable drawable) {
         // objects.add(player);
-        // for (int i = 0; i < 27; i++) {
-        //     int[] position = { -12 + ((3 * i) % 27), +27 - (3 * i) / 27 };
-        //     objects.add(
-        //         new MonsterRender(
-        //             (float) position[0],
-        //             (float) position[1],
-        //             0f,
-        //             0f,
-        //             0f,
-        //             0f,
-        //             1f,
-        //             0f,
-        //             0f,
-        //             1f
-        //         )
-        //     );
-        // }
         this.player.initRenderer();
+        this.initMonsters();
+        this.monsters.forEach(m -> m.initRenderer());
         this.addKeyListener(new KeyboardListener(this.player));
         GL2 gl = drawable.getGL().getGL2();
         gl.glEnable(GL2.GL_TEXTURE_2D);
@@ -70,9 +55,10 @@ public class MainGame
         GL2 gl = drawable.getGL().getGL2();
         gl.glClear(GL2.GL_COLOR_BUFFER_BIT | GL2.GL_DEPTH_BUFFER_BIT);
         gl.glLoadIdentity();
-        this.angle += 1f;
+        // this.angle += 1f;
         gl.glTranslatef(0f, 0f, -Position.DEPTH);
         this.player.getRender().display(gl);
+        this.monsters.stream().forEach(m -> m.getRender().display(gl));
         // for (GraphicalObject object : this.objects) {
         //     object.setAngle(this.angle, this.angle, 0f);
         //     object.display(gl);
@@ -120,5 +106,14 @@ public class MainGame
     @Override
     public void addBullet(Bullet bullet) {
         this.bullets.add(bullet);
+    }
+
+    private void initMonsters() {
+        for (int i = 0; i < 27; i++) {
+            int[] position = { -12 + ((3 * i) % 27), +27 - (3 * i) / 27 };
+            monsters.add(
+                new Monster(new Position(position[0], position[1]), this)
+            );
+        }
     }
 }

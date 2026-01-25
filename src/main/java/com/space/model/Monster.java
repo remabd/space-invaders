@@ -21,7 +21,7 @@ public class Monster extends Entity {
         this.render = new MonsterRender(
             this.position.getX(),
             this.position.getY(),
-            Position.DEPTH,
+            0f,
             0f,
             0f,
             0f,
