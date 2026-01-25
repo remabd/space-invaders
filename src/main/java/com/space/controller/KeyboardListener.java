@@ -8,7 +8,6 @@ import com.space.model.Player;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.HashMap;
-import java.util.Map;
 
 //TODO Il faut passer le shoot en KeyTyped et non en Keypressed
 public class KeyboardListener implements KeyListener {

@@ -15,7 +15,6 @@ public abstract class Entity {
         this.position = p;
         this.speed = s;
         this.hp = hp;
-        this.initRenderer();
         this.bulletController = bm;
     }
 
@@ -40,7 +39,7 @@ public abstract class Entity {
 
     abstract void resolveDeath();
 
-    abstract void move();
+    abstract void move(float pX, float pY);
 
     abstract void shoot();
 

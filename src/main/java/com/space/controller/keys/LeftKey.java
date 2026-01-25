@@ -10,6 +10,6 @@ public class LeftKey extends Key {
 
     @Override
     public void doAction() {
-        this.player.move();
+        this.player.move(-1f, 0f);
     }
 }

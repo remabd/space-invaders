@@ -12,10 +12,6 @@ import com.space.model.Bullet;
 import com.space.model.Monster;
 import com.space.model.Player;
 import com.space.model.Position;
-import com.space.view.game.forme.Cube;
-import com.space.view.game.forme.GraphicalObject;
-import com.space.view.game.render.MonsterRender;
-import com.space.view.game.render.PlayerRender;
 import java.awt.Dimension;
 import java.util.ArrayList;
 import javax.swing.JFrame;
@@ -40,20 +36,6 @@ public class MainGame
 
     @Override
     public void init(GLAutoDrawable drawable) {
-        // Cube c1 = new Cube("assets/arrow.png", 0, 0, 0, 0, 0, 0, 1f, 0, 0, 2f);
-        // objects.add(c1);
-        // PlayerRender player = new PlayerRender(
-        //     0f,
-        //     -27f,
-        //     0f,
-        //     0f,
-        //     0f,
-        //     0f,
-        //     0f,
-        //     1f,
-        //     0f,
-        //     1f
-        // );
         // objects.add(player);
         // for (int i = 0; i < 27; i++) {
         //     int[] position = { -12 + ((3 * i) % 27), +27 - (3 * i) / 27 };
@@ -72,7 +54,7 @@ public class MainGame
         //         )
         //     );
         // }
-
+        this.player.initRenderer();
         this.addKeyListener(new KeyboardListener(this.player));
         GL2 gl = drawable.getGL().getGL2();
         gl.glEnable(GL2.GL_TEXTURE_2D);
