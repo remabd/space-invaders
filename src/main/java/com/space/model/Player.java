@@ -12,6 +12,11 @@ public class Player extends Entity {
     }
 
     public void move(float pX, float pY) {
+        if (Math.abs(this.position.getX()) > 20f) {
+            this.position.move(
+                new Position(-this.position.getX(), this.position.getY())
+            );
+        }
         this.position.move(
             new Position(
                 this.position.getX() + pX * Player.PLAYERSPEED,
