@@ -26,6 +26,13 @@ public class MainGame
     private ArrayList<Bullet> bullets;
     private float angle;
 
+    public static float SPACE_BETWEEN_ROWS = 3f;
+    public static float SPACE_BETWEEN_COLUMNS = 4f;
+    public static int COLUMNS = 11;
+    public static int MONSTERS_NUMBER = 60;
+    public static float MAX_ROW_Y = 27f;
+    public static float MAX_COLUMN_X = 20f;
+
     public MainGame() {
         this.addGLEventListener(this);
         this.player = new Player(this);
@@ -109,8 +116,13 @@ public class MainGame
     }
 
     private void initMonsters() {
-        for (int i = 0; i < 27; i++) {
-            int[] position = { -12 + ((3 * i) % 27), +27 - (3 * i) / 27 };
+        for (int i = 0; i < MainGame.MONSTERS_NUMBER; i++) {
+            int col = i % MainGame.COLUMNS;
+            int row = i / MainGame.COLUMNS;
+            float[] position = {
+                -MainGame.MAX_COLUMN_X + col * MainGame.SPACE_BETWEEN_COLUMNS,
+                MainGame.MAX_ROW_Y - row * MainGame.SPACE_BETWEEN_ROWS,
+            };
             monsters.add(
                 new Monster(new Position(position[0], position[1]), this)
             );
