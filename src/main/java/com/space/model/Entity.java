@@ -1,6 +1,6 @@
 package com.space.model;
 
-import com.space.controller.BulletManager;
+import com.space.controller.GameManager;
 import com.space.view.game.render.Render;
 
 public abstract class Entity {
@@ -8,19 +8,12 @@ public abstract class Entity {
     protected Position position;
     protected int hp;
     protected Render render;
-    protected BulletManager bulletController;
+    protected GameManager gameManager;
 
-    public Entity(int hp, Position p, BulletManager bm) {
+    public Entity(int hp, Position p, GameManager bm) {
         this.position = p;
         this.hp = hp;
-        this.bulletController = bm;
-    }
-
-    public void loseHp() {
-        this.hp--;
-        if (this.hp == 0) {
-            this.resolveDeath();
-        }
+        this.gameManager = bm;
     }
 
     public Position getPosition() {
@@ -30,8 +23,6 @@ public abstract class Entity {
     public Render getRender() {
         return this.render;
     }
-
-    abstract void resolveDeath();
 
     abstract void move(float pX, float pY);
 

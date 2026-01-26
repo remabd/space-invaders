@@ -1,13 +1,13 @@
 package com.space.model;
 
-import com.space.controller.BulletManager;
+import com.space.controller.GameManager;
 import com.space.view.game.render.MonsterRender;
 
 public class Monster extends Entity {
 
     public static float MONSTERSPEED = 1f;
 
-    public Monster(Position p, BulletManager bm) {
+    public Monster(Position p, GameManager bm) {
         super(1, p, bm);
     }
 

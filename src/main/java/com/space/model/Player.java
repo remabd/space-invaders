@@ -1,13 +1,13 @@
 package com.space.model;
 
-import com.space.controller.BulletManager;
+import com.space.controller.GameManager;
 import com.space.view.game.render.PlayerRender;
 
 public class Player extends Entity {
 
     public static float PLAYERSPEED = 1f;
 
-    public Player(BulletManager bm) {
+    public Player(GameManager bm) {
         super(5, new Position(0f, -27f), bm);
     }
 
@@ -26,15 +26,20 @@ public class Player extends Entity {
         this.render.setPosition(this.position.getX(), this.position.getY());
     }
 
-    public void resolveDeath() {}
-
     public void shoot() {
         Bullet b = new Bullet(
             new Position(this.position.getX(), this.position.getY() + 3f),
-            this.bulletController,
+            this.gameManager,
             Bullet.BULLET_SOURCE.PLAYER
         );
-        this.bulletController.addBullet(b);
+        this.gameManager.addBullet(b);
+    }
+
+    public void loseHp() {
+        this.hp--;
+        if (this.hp <= 0) {
+            this.gameManager.gameOver();
+        }
     }
 
     public void initRenderer() {

@@ -6,7 +6,7 @@ import com.jogamp.opengl.GLEventListener;
 import com.jogamp.opengl.awt.GLCanvas;
 import com.jogamp.opengl.glu.GLU;
 import com.jogamp.opengl.util.Animator;
-import com.space.controller.BulletManager;
+import com.space.controller.GameManager;
 import com.space.controller.KeyboardListener;
 import com.space.model.Bullet;
 import com.space.model.Bullet.BULLET_SOURCE;
@@ -19,7 +19,7 @@ import javax.swing.JFrame;
 
 public class MainGame
     extends GLCanvas
-    implements GLEventListener, BulletManager
+    implements GLEventListener, GameManager
 {
 
     private Player player;
@@ -174,5 +174,10 @@ public class MainGame
         boolean collisionY =
             p1.getY() + 1 >= p2.getY() && p2.getY() + 1 >= p1.getY();
         return collisionX && collisionY;
+    }
+    
+    //TODO 
+    public void gameOver() {
+        return;
     }
 }
