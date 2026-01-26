@@ -63,4 +63,8 @@ public class Bullet extends Entity {
             1f
         );
     }
+
+    public BULLET_SOURCE getSource() {
+        return this.source;
+    }
 }

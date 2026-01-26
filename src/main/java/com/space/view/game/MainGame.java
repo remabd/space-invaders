@@ -9,6 +9,7 @@ import com.jogamp.opengl.util.Animator;
 import com.space.controller.BulletManager;
 import com.space.controller.KeyboardListener;
 import com.space.model.Bullet;
+import com.space.model.Bullet.BULLET_SOURCE;
 import com.space.model.Monster;
 import com.space.model.Player;
 import com.space.model.Position;
@@ -75,6 +76,7 @@ public class MainGame
                 this.bullets.remove(i);
             }
         }
+        this.detectCollisions();
     }
 
     @Override
@@ -132,5 +134,45 @@ public class MainGame
                 new Monster(new Position(position[0], position[1]), this)
             );
         }
+    }
+
+    private void detectCollisions() {
+        for (int ib = 0; ib < this.bullets.size(); ib++) {
+            if (
+                this.bullets.get(ib).getSource() == Bullet.BULLET_SOURCE.PLAYER
+            ) {
+                for (int im = 0; im < this.monsters.size(); im++) {
+                    if (
+                        detectCollision(
+                            this.bullets.get(ib).getPosition(),
+                            this.monsters.get(im).getPosition()
+                        )
+                    ) {
+                        this.bullets.remove(ib);
+                        this.monsters.remove(im);
+                        break;
+                    }
+                }
+            } else {
+                if (
+                    detectCollision(
+                        this.bullets.get(ib).getPosition(),
+                        this.player.getPosition()
+                    )
+                ) {
+                    this.bullets.remove(ib);
+                    this.player.loseHp();
+                    break;
+                }
+            }
+        }
+    }
+
+    private boolean detectCollision(Position p1, Position p2) {
+        boolean collisionX =
+            p1.getX() + 1 >= p2.getX() && p2.getX() + 1 >= p1.getX();
+        boolean collisionY =
+            p1.getY() + 1 >= p2.getY() && p2.getY() + 1 >= p1.getY();
+        return collisionX && collisionY;
     }
 }
