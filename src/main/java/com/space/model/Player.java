@@ -1,6 +1,7 @@
 package com.space.model;
 
 import com.space.controller.GameManager;
+import com.space.view.game.MainGame;
 import com.space.view.game.render.PlayerRender;
 
 public class Player extends Entity {
@@ -8,21 +9,21 @@ public class Player extends Entity {
     public static float PLAYERSPEED = 1f;
 
     public Player(GameManager bm) {
-        super(5, new Position(0f, -27f), bm);
+        super(5, new Position(0f, -MainGame.MAX_ROW_Y), bm);
     }
 
     public void move(float pX, float pY) {
-        if (Math.abs(this.position.getX()) > 20f) {
-            this.position.move(
-                new Position(-this.position.getX(), this.position.getY())
-            );
-        }
-        this.position.move(
+        this.position.setPosition(
             new Position(
                 this.position.getX() + pX * Player.PLAYERSPEED,
                 this.position.getY() + pY * Player.PLAYERSPEED
             )
         );
+        if (Math.abs(this.position.getX()) > MainGame.MAX_COLUMN_X) {
+            this.position.setPosition(
+                new Position(-this.position.getX(), this.position.getY())
+            );
+        }
         this.render.setPosition(this.position.getX(), this.position.getY());
     }
 

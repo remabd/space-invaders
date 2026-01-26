@@ -24,7 +24,5 @@ public abstract class Entity {
         return this.render;
     }
 
-    abstract void move(float pX, float pY);
-
     abstract void initRenderer();
 }

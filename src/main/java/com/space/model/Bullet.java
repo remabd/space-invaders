@@ -19,25 +19,16 @@ public class Bullet extends Entity {
         this.source = source;
     }
 
-    @Override
-    void resolveDeath() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException(
-            "Unimplemented method 'resolveDeath'"
-        );
-    }
-
-    @Override
-    public void move(float pX, float pY) {
+    public void move() {
         if (this.source == Bullet.BULLET_SOURCE.PLAYER) {
-            this.position.move(
+            this.position.setPosition(
                 new Position(
                     this.position.getX(),
                     this.position.getY() + Bullet.BULLETSPEED
                 )
             );
         } else {
-            this.position.move(
+            this.position.setPosition(
                 new Position(
                     this.position.getX(),
                     this.position.getY() - Bullet.BULLETSPEED
@@ -47,7 +38,6 @@ public class Bullet extends Entity {
         this.render.setPosition(this.position.getX(), this.position.getY());
     }
 
-    @Override
     public void initRenderer() {
         this.render = new BulletRender(
             this.position.getX(),

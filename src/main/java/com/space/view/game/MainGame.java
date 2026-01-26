@@ -17,10 +17,7 @@ import java.awt.Dimension;
 import java.util.ArrayList;
 import javax.swing.JFrame;
 
-public class MainGame
-    extends GLCanvas
-    implements GLEventListener, GameManager
-{
+public class MainGame extends GLCanvas implements GLEventListener, GameManager {
 
     private Player player;
     private ArrayList<Monster> monsters;
@@ -66,12 +63,15 @@ public class MainGame
         // this.angle += 1f;
         gl.glTranslatef(0f, 0f, -Position.DEPTH);
         this.player.getRender().display(gl);
-        this.monsters.stream().forEach(m -> m.getRender().display(gl));
+        for (Monster m : this.monsters) {
+            m.getRender().display(gl);
+            m.move();
+        }
         for (int i = 0; i < this.bullets.size(); i++) {
             Bullet b = this.bullets.get(i);
             b.initRenderer();
             b.getRender().display(gl);
-            b.move(0f, 1f);
+            b.move();
             if (Math.abs(b.getPosition().getY()) > MainGame.MAX_ROW_Y) {
                 this.bullets.remove(i);
             }
@@ -175,9 +175,14 @@ public class MainGame
             p1.getY() + 1 >= p2.getY() && p2.getY() + 1 >= p1.getY();
         return collisionX && collisionY;
     }
-    
-    //TODO 
+
+    //TODO
     public void gameOver() {
+        return;
+    }
+
+    //TODO
+    public void win() {
         return;
     }
 }
