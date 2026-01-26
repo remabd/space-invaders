@@ -35,7 +35,5 @@ public abstract class Entity {
 
     abstract void move(float pX, float pY);
 
-    abstract void shoot();
-
     abstract void initRenderer();
 }

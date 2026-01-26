@@ -66,10 +66,15 @@ public class MainGame
         gl.glTranslatef(0f, 0f, -Position.DEPTH);
         this.player.getRender().display(gl);
         this.monsters.stream().forEach(m -> m.getRender().display(gl));
-        // for (GraphicalObject object : this.objects) {
-        //     object.setAngle(this.angle, this.angle, 0f);
-        //     object.display(gl);
-        // }
+        for (int i = 0; i < this.bullets.size(); i++) {
+            Bullet b = this.bullets.get(i);
+            b.initRenderer();
+            b.getRender().display(gl);
+            b.move(0f, 1f);
+            if (Math.abs(b.getPosition().getY()) > MainGame.MAX_ROW_Y) {
+                this.bullets.remove(i);
+            }
+        }
     }
 
     @Override

@@ -28,7 +28,14 @@ public class Player extends Entity {
 
     public void resolveDeath() {}
 
-    public void shoot() {}
+    public void shoot() {
+        Bullet b = new Bullet(
+            new Position(this.position.getX(), this.position.getY() + 3f),
+            this.bulletController,
+            Bullet.BULLET_SOURCE.PLAYER
+        );
+        this.bulletController.addBullet(b);
+    }
 
     public void initRenderer() {
         this.render = new PlayerRender(
