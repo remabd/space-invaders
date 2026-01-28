@@ -16,7 +16,7 @@ public class Particle extends GraphicalObject {
     private Texture cubeTex;
 
     public Particle() {
-        super(0, 0, 0, 0, 0, 0, 1, 1, 1, 0.06f);
+        super(0, 0, 0, 0, 0, 0, 1, 1, 1, 1f);
         this.life = 0f;
         this.maxLife = 1f;
         setAlpha(0f);
@@ -34,26 +34,23 @@ public class Particle extends GraphicalObject {
     public void respawn(float ex, float ey, float ez) {
         this.setPosition(ex, ey);
 
-        vx = (RNG.nextFloat() - 0.5f) * 2.0f;
-        vy = 2.0f + RNG.nextFloat() * 2.0f;
+        vx = (RNG.nextFloat() - 0.5f) * 500.0f;
+        vy = (RNG.nextFloat() - 0.5f) * 500.0f;
 
         maxLife = 0.8f + RNG.nextFloat() * 1.2f;
         life = maxLife;
 
-        setScale(0.04f + RNG.nextFloat() * 0.06f);
+        setScale(0.3f + RNG.nextFloat() * 0.06f);
         setColor(1f, 0.8f + 0.2f * RNG.nextFloat(), 0.2f); // spark-ish
         setAlpha(1f);
     }
 
-    public void update(float dt, float ax, float ay, float az, float drag) {
+    public void update(float dt) {
         if (!isAlive()) return;
-
-        vx += (ax - drag * vx) * dt;
-        vy += (ay - drag * vy) * dt;
 
         translate(vx * dt, vy * dt);
 
-        life -= dt;
+        life -= 200f * dt;
         float t = life / maxLife; // 1 -> 0
         setAlpha(Math.max(0f, Math.min(1f, t)) * 0.5f);
     }

@@ -79,8 +79,8 @@ public class MainGame extends GLCanvas implements GLEventListener, GameManager {
             }
         }
         for (ParticleSystem ps : this.particules) {
-            ps.update(0.00005f);
             ps.display(gl);
+            ps.update(0.00005f);
         }
         this.detectCollisions();
     }
@@ -156,7 +156,7 @@ public class MainGame extends GLCanvas implements GLEventListener, GameManager {
                     ) {
                         this.particules.add(
                             new ParticleSystem(
-                                200,
+                                100,
                                 this.monsters.get(im).getPosition().getX(),
                                 this.monsters.get(im).getPosition().getY()
                             )
