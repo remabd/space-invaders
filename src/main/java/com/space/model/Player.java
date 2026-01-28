@@ -12,16 +12,13 @@ public class Player extends Entity {
         super(5, new Position(0f, -MainGame.MAX_ROW_Y), bm);
     }
 
-    public void move(float pX, float pY) {
-        this.position.setPosition(
-            new Position(
-                this.position.getX() + pX * Player.PLAYERSPEED,
-                this.position.getY() + pY * Player.PLAYERSPEED
-            )
-        );
+    public void move(float pX) {
+        this.position.setX(this.position.getX() + pX * Player.PLAYERSPEED);
         if (Math.abs(this.position.getX()) > MainGame.MAX_COLUMN_X) {
-            this.position.setPosition(
-                new Position(-this.position.getX(), this.position.getY())
+            this.position.setX(
+                this.position.getX() > 0
+                    ? -MainGame.MAX_COLUMN_X
+                    : MainGame.MAX_COLUMN_X
             );
         }
         this.render.setPosition(this.position.getX(), this.position.getY());

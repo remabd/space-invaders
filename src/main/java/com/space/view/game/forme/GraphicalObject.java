@@ -51,6 +51,21 @@ public abstract class GraphicalObject {
         this.y = y;
     }
 
+    public void setScale(float s) {
+        this.scale = s;
+    }
+
+    public void setColor(float r, float g, float b) {
+        this.r = r;
+        this.g = g;
+        this.b = b;
+    }
+
+    public void translate(float dx, float dy) {
+        this.x += dx;
+        this.y += dy;
+    }
+
     public void display(GL2 gl) {
         gl.glPushMatrix();
         gl.glTranslatef(this.x, this.y, this.z);

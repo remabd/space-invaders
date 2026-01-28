@@ -9,10 +9,10 @@ import com.jogamp.opengl.util.Animator;
 import com.space.controller.GameManager;
 import com.space.controller.KeyboardListener;
 import com.space.model.Bullet;
-import com.space.model.Bullet.BULLET_SOURCE;
 import com.space.model.Monster;
 import com.space.model.Player;
 import com.space.model.Position;
+import com.space.view.game.render.ParticleSystem;
 import java.awt.Dimension;
 import java.util.ArrayList;
 import javax.swing.JFrame;
@@ -22,6 +22,7 @@ public class MainGame extends GLCanvas implements GLEventListener, GameManager {
     private Player player;
     private ArrayList<Monster> monsters;
     private ArrayList<Bullet> bullets;
+    private ArrayList<ParticleSystem> particules;
     private float angle;
 
     public static float SPACE_BETWEEN_ROWS = 3f;
@@ -36,6 +37,7 @@ public class MainGame extends GLCanvas implements GLEventListener, GameManager {
         this.player = new Player(this);
         this.monsters = new ArrayList<Monster>();
         this.bullets = new ArrayList<Bullet>();
+        this.particules = new ArrayList<ParticleSystem>();
         this.angle = 0f;
     }
 
@@ -75,6 +77,10 @@ public class MainGame extends GLCanvas implements GLEventListener, GameManager {
             if (Math.abs(b.getPosition().getY()) > MainGame.MAX_ROW_Y) {
                 this.bullets.remove(i);
             }
+        }
+        for (ParticleSystem ps : this.particules) {
+            ps.update(0.00005f);
+            ps.display(gl);
         }
         this.detectCollisions();
     }
@@ -148,6 +154,13 @@ public class MainGame extends GLCanvas implements GLEventListener, GameManager {
                             this.monsters.get(im).getPosition()
                         )
                     ) {
+                        this.particules.add(
+                            new ParticleSystem(
+                                200,
+                                this.monsters.get(im).getPosition().getX(),
+                                this.monsters.get(im).getPosition().getY()
+                            )
+                        );
                         this.bullets.remove(ib);
                         this.monsters.remove(im);
                         break;
