@@ -6,9 +6,9 @@ import com.jogamp.opengl.util.texture.TextureIO;
 import java.io.File;
 import java.io.IOException;
 
-public class Carre extends GraphicalObject {
+public class Rect extends GraphicalObject {
 
-    public Carre(
+    public Rect(
         float x,
         float y,
         float z,
@@ -18,21 +18,21 @@ public class Carre extends GraphicalObject {
         float r,
         float g,
         float b,
-        float scale
+        float s
     ) {
-        super(x, y, z, aX, aY, aZ, r, g, b, scale);
+        super(x, y, z, aX, aY, aZ, r, g, b, s);
     }
 
     public void displayNormalized(GL2 gl) {
         gl.glBegin(GL2.GL_QUADS);
         gl.glTexCoord2f(0f, 0f);
-        gl.glVertex3f(-1f, -1f, 0f);
+        gl.glVertex3f(-1f, -0.1f, 0f);
         gl.glTexCoord2f(1f, 0f);
-        gl.glVertex3f(1f, -1f, 0f);
+        gl.glVertex3f(1f, -0.1f, 0f);
         gl.glTexCoord2f(1f, 1f);
-        gl.glVertex3f(1f, 1f, 0f);
+        gl.glVertex3f(1f, 0.1f, 0f);
         gl.glTexCoord2f(0f, 1f);
-        gl.glVertex3f(-1f, 1f, 0f);
+        gl.glVertex3f(-1f, 0.1f, 0f);
         gl.glEnd();
     }
 }

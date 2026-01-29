@@ -51,7 +51,7 @@ public class Player extends Entity {
             1f,
             0f,
             0f,
-            1f
+            0.25f
         );
     }
 }

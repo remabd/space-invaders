@@ -23,9 +23,7 @@ public class BulletRender extends GraphicalObject implements Render {
     ) {
         super(x, y, z, aX, aY, aZ, r, g, b, scale);
         this.formes = new ArrayList<GraphicalObject>();
-        this.formes.add(
-            new Cube("assets/arrow.png", 0f, 0f, 0f, 0f, 0f, 0f, 0f, 1f, 0f, 1f)
-        );
+        this.formes.add(new Cube(0f, 0f, 0f, 0f, 0f, 0f, 0f, 1f, 0f, 1f));
     }
 
     public void displayNormalized(GL2 gl) {

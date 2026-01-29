@@ -12,6 +12,7 @@ import com.space.model.Bullet;
 import com.space.model.Monster;
 import com.space.model.Player;
 import com.space.model.Position;
+import com.space.view.game.forme.Plate;
 import com.space.view.game.render.ParticleSystem;
 import java.awt.Dimension;
 import java.util.ArrayList;
@@ -22,7 +23,7 @@ public class MainGame extends GLCanvas implements GLEventListener, GameManager {
     private Player player;
     private ArrayList<Monster> monsters;
     private ArrayList<Bullet> bullets;
-    private ArrayList<ParticleSystem> particules;
+    private ArrayList<ParticleSystem> particuleSystems;
     private float angle;
 
     public static float SPACE_BETWEEN_ROWS = 3f;
@@ -31,19 +32,19 @@ public class MainGame extends GLCanvas implements GLEventListener, GameManager {
     public static int MONSTERS_NUMBER = 60;
     public static float MAX_ROW_Y = 27f;
     public static float MAX_COLUMN_X = 20f;
+    public static int PARTICULE_NUMBER_PER_SYSTEM = 100;
 
     public MainGame() {
         this.addGLEventListener(this);
         this.player = new Player(this);
         this.monsters = new ArrayList<Monster>();
         this.bullets = new ArrayList<Bullet>();
-        this.particules = new ArrayList<ParticleSystem>();
+        this.particuleSystems = new ArrayList<ParticleSystem>();
         this.angle = 0f;
     }
 
     @Override
     public void init(GLAutoDrawable drawable) {
-        // objects.add(player);
         this.player.initRenderer();
         this.initMonsters();
         this.monsters.forEach(m -> m.initRenderer());
@@ -62,7 +63,6 @@ public class MainGame extends GLCanvas implements GLEventListener, GameManager {
         GL2 gl = drawable.getGL().getGL2();
         gl.glClear(GL2.GL_COLOR_BUFFER_BIT | GL2.GL_DEPTH_BUFFER_BIT);
         gl.glLoadIdentity();
-        // this.angle += 1f;
         gl.glTranslatef(0f, 0f, -Position.DEPTH);
         this.player.getRender().display(gl);
         for (Monster m : this.monsters) {
@@ -78,7 +78,7 @@ public class MainGame extends GLCanvas implements GLEventListener, GameManager {
                 this.bullets.remove(i);
             }
         }
-        for (ParticleSystem ps : this.particules) {
+        for (ParticleSystem ps : this.particuleSystems) {
             ps.display(gl);
             ps.update(0.00005f);
         }
@@ -154,9 +154,9 @@ public class MainGame extends GLCanvas implements GLEventListener, GameManager {
                             this.monsters.get(im).getPosition()
                         )
                     ) {
-                        this.particules.add(
+                        this.particuleSystems.add(
                             new ParticleSystem(
-                                100,
+                                MainGame.PARTICULE_NUMBER_PER_SYSTEM,
                                 this.monsters.get(im).getPosition().getX(),
                                 this.monsters.get(im).getPosition().getY()
                             )
