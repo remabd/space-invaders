@@ -12,7 +12,6 @@ import com.space.model.Bullet;
 import com.space.model.Monster;
 import com.space.model.Player;
 import com.space.model.Position;
-import com.space.view.game.forme.Plate;
 import com.space.view.game.render.ParticleSystem;
 import java.awt.Dimension;
 import java.util.ArrayList;

@@ -2,7 +2,6 @@ package com.space.view.game.render;
 
 import com.jogamp.opengl.GL2;
 import com.jogamp.opengl.util.texture.Texture;
-import com.space.model.Player;
 import com.space.model.Position;
 import com.space.view.game.forme.Particle;
 import java.util.ArrayList;

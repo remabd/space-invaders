@@ -3,11 +3,9 @@ package com.space.app;
 import java.awt.Dimension;
 
 import javax.swing.JFrame;
-import com.jogamp.opengl.GL2;
 import com.jogamp.opengl.GLAutoDrawable;
 import com.jogamp.opengl.GLEventListener;
 import com.jogamp.opengl.awt.GLCanvas;
-import com.jogamp.opengl.glu.GLU;
 import com.jogamp.opengl.util.Animator;
 
 public class GameWindow extends GLCanvas implements GLEventListener {
