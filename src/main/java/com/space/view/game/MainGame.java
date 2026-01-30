@@ -82,6 +82,9 @@ public class MainGame extends GLCanvas implements GLEventListener, GameManager {
             ps.update(0.00005f);
         }
         this.detectCollisions();
+        if (this.monsters.size() == 0) {
+            this.win();
+        }
     }
 
     @Override
