@@ -18,6 +18,13 @@ public class MainMenu {
         menu.setSize(600, 800);
         menu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+        JPanel mainPanel = MainMenu.createPanel(menu);
+
+        menu.add(mainPanel);
+        menu.setVisible(true);
+    }
+
+    public static JPanel createPanel(JFrame menu) {
         JPanel mainPanel = new JPanel();
         JLabel titre = new JLabel("SPACE INVADERS");
         titre.setFont(new Font("Serif", Font.PLAIN, 30));
@@ -56,8 +63,6 @@ public class MainMenu {
         // gbc.weighty = 0;
         // mainPanel.add(commandPanel, gbc);
 
-        menu.add(mainPanel);
-
-        menu.setVisible(true);
+        return mainPanel;
     }
 }
