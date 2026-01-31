@@ -31,8 +31,6 @@ public class Monster extends Entity {
         this.render.setPosition(this.position.getX(), this.position.getY());
     }
 
-    public void resolveDeath() {}
-
     public void shoot() {}
 
     public void initRenderer() {

@@ -21,19 +21,11 @@ public class Bullet extends Entity {
 
     public void move() {
         if (this.source == Bullet.BULLET_SOURCE.PLAYER) {
-            this.position.setPosition(
-                new Position(
-                    this.position.getX(),
-                    this.position.getY() + Bullet.BULLETSPEED
-                )
-            );
+            this.position.setX(this.position.getX());
+            this.position.setY(this.position.getY() + Bullet.BULLETSPEED);
         } else {
-            this.position.setPosition(
-                new Position(
-                    this.position.getX(),
-                    this.position.getY() - Bullet.BULLETSPEED
-                )
-            );
+            this.position.setX(this.position.getX());
+            this.position.setY(this.position.getY() - Bullet.BULLETSPEED);
         }
         this.render.setPosition(this.position.getX(), this.position.getY());
     }

@@ -10,11 +10,6 @@ public class Position {
         this.y = y;
     }
 
-    public void setPosition(Position p) {
-        this.x = p.x;
-        this.y = p.y;
-    }
-
     public void setX(float x) {
         this.x = x;
     }
