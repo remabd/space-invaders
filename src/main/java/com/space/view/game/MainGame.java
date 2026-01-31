@@ -82,8 +82,7 @@ public class MainGame extends GLCanvas implements GLEventListener, GameManager {
         this.detectCollisions();
         if (this.monsters.size() == 0) {
             this.win();
-        }
-        if (
+        } else if (
             this.monsters.get(this.monsters.size() - 1).getPosition().getY() <=
             MainGame.LOSE_THRESHOLD_Y
         ) {
@@ -184,7 +183,11 @@ public class MainGame extends GLCanvas implements GLEventListener, GameManager {
 
     //TODO
     public void gameOver() {
-        return;
+        JFrame frame = MainMenu.MAINFRAME;
+        frame.getContentPane().removeAll();
+        frame.getContentPane().add(MainMenu.createPanel());
+        frame.revalidate();
+        frame.repaint();
     }
 
     //TODO
