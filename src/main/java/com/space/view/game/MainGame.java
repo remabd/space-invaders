@@ -5,7 +5,6 @@ import com.jogamp.opengl.GLAutoDrawable;
 import com.jogamp.opengl.GLEventListener;
 import com.jogamp.opengl.awt.GLCanvas;
 import com.jogamp.opengl.glu.GLU;
-import com.jogamp.opengl.util.Animator;
 import com.space.controller.GameManager;
 import com.space.controller.KeyboardListener;
 import com.space.model.Bullet;
@@ -14,10 +13,8 @@ import com.space.model.Player;
 import com.space.model.Position;
 import com.space.view.game.render.ParticleSystem;
 import com.space.view.menu.MainMenu;
-import java.awt.Dimension;
 import java.util.ArrayList;
 import javax.swing.JFrame;
-import javax.swing.SwingUtilities;
 
 public class MainGame extends GLCanvas implements GLEventListener, GameManager {
 
@@ -25,7 +22,6 @@ public class MainGame extends GLCanvas implements GLEventListener, GameManager {
     private ArrayList<Monster> monsters;
     private ArrayList<Bullet> bullets;
     private ArrayList<ParticleSystem> particuleSystems;
-    private float angle;
 
     public static float SPACE_BETWEEN_ROWS = 3f;
     public static float SPACE_BETWEEN_COLUMNS = 4f;
@@ -42,7 +38,6 @@ public class MainGame extends GLCanvas implements GLEventListener, GameManager {
         this.monsters = new ArrayList<Monster>();
         this.bullets = new ArrayList<Bullet>();
         this.particuleSystems = new ArrayList<ParticleSystem>();
-        this.angle = 0f;
     }
 
     @Override
@@ -89,7 +84,7 @@ public class MainGame extends GLCanvas implements GLEventListener, GameManager {
             this.win();
         }
         if (
-            this.monsters.get(this.monsters.size() -1).getPosition().getY() <=
+            this.monsters.get(this.monsters.size() - 1).getPosition().getY() <=
             MainGame.LOSE_THRESHOLD_Y
         ) {
             this.gameOver();
@@ -119,19 +114,6 @@ public class MainGame extends GLCanvas implements GLEventListener, GameManager {
         gl.glMatrixMode(GL2.GL_MODELVIEW);
         gl.glLoadIdentity();
         gl.glEnable(GL2.GL_DEPTH_TEST);
-    }
-
-    public static void main(String[] args) {
-        GLCanvas canvas = new MainGame();
-        canvas.setPreferredSize(new Dimension(600, 800));
-        final JFrame frame = new JFrame();
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.getContentPane().add(canvas);
-        frame.setTitle("Space Invaders");
-        frame.pack();
-        frame.setVisible(true);
-        final Animator animator = new Animator(canvas);
-        animator.start();
     }
 
     @Override
