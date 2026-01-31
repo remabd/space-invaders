@@ -13,9 +13,11 @@ import com.space.model.Monster;
 import com.space.model.Player;
 import com.space.model.Position;
 import com.space.view.game.render.ParticleSystem;
+import com.space.view.menu.MainMenu;
 import java.awt.Dimension;
 import java.util.ArrayList;
 import javax.swing.JFrame;
+import javax.swing.SwingUtilities;
 
 public class MainGame extends GLCanvas implements GLEventListener, GameManager {
 
@@ -32,6 +34,7 @@ public class MainGame extends GLCanvas implements GLEventListener, GameManager {
     public static float MAX_ROW_Y = 27f;
     public static float MAX_COLUMN_X = 20f;
     public static int PARTICULE_NUMBER_PER_SYSTEM = 100;
+    public static float LOSE_THRESHOLD_Y = -22f;
 
     public MainGame() {
         this.addGLEventListener(this);
@@ -84,6 +87,12 @@ public class MainGame extends GLCanvas implements GLEventListener, GameManager {
         this.detectCollisions();
         if (this.monsters.size() == 0) {
             this.win();
+        }
+        if (
+            this.monsters.get(this.monsters.size() -1).getPosition().getY() <=
+            MainGame.LOSE_THRESHOLD_Y
+        ) {
+            this.gameOver();
         }
     }
 
@@ -198,6 +207,10 @@ public class MainGame extends GLCanvas implements GLEventListener, GameManager {
 
     //TODO
     public void win() {
-        return;
+        JFrame frame = MainMenu.MAINFRAME;
+        frame.getContentPane().removeAll();
+        frame.getContentPane().add(MainMenu.createPanel());
+        frame.revalidate();
+        frame.repaint();
     }
 }

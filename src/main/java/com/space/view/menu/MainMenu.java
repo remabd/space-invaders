@@ -10,21 +10,24 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 
 public class MainMenu {
+    public static JFrame MAINFRAME;
 
     public static void main(String[] args) {
-        JFrame menu = new JFrame("Menu");
-        menu.setSize(600, 800);
-        menu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        ;
+        MainMenu.MAINFRAME = new JFrame("Menu");
+        MainMenu.MAINFRAME.setSize(600, 800);
+        MainMenu.MAINFRAME.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        JPanel mainPanel = MainMenu.createPanel(menu);
+        JPanel mainPanel = MainMenu.createPanel();
 
-        menu.add(mainPanel);
-        menu.setVisible(true);
+        MainMenu.MAINFRAME.add(mainPanel);
+        MainMenu.MAINFRAME.setVisible(true);
     }
 
-    public static JPanel createPanel(JFrame menu) {
+    public static JPanel createPanel() {
         JPanel mainPanel = new JPanel();
         JLabel titre = new JLabel("SPACE INVADERS");
         titre.setFont(new Font("Serif", Font.PLAIN, 30));
@@ -32,6 +35,8 @@ public class MainMenu {
         JButton startButton = new JButton("Start Game");
         startButton.addActionListener(e -> {
             MainGame gameCanvas = new MainGame();
+
+            JFrame menu = MainMenu.MAINFRAME;
 
             menu.getContentPane().removeAll();
             menu.getContentPane().add(gameCanvas, BorderLayout.CENTER);
